@@ -1,0 +1,27 @@
+<!-- recipes/templates/recipes/qr.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スマホ用QRコード</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        img {
+            max-width: 80%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>このリンクにアクセス</h1>
+    <p>スマホでQRコードを読み取ってください。</p>
+    <img src="data:image/png;base64,{{ qr_code }}" alt="QRコード">
+</body>
+</html>
+<!-- cd /Users/kanekokeigo/Desktop/recipesmemory/recipesmemory/ -->
+<!-- python manage.py runserver -->

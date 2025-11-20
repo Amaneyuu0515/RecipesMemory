@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>{{ recipe.title }} | RecipesMemory</title>
+    <link rel="stylesheet" href="{% static 'recipes/style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <h1>{{ recipe.title }}</h1>
+
+    <div class="recipe-card">
+        <p><strong>材料:</strong><br>{{ recipe.ingredients|linebreaks }}</p>
+        <p><strong>作り方:</strong><br>{{ recipe.instructions|linebreaks }}</p>
+        <small>投稿日: {{ recipe.created_at|date:"Y年m月d日 H:i" }}</small>
+    </div>
+
+    <p style="text-align:center;">
+        <a href="{% url 'index' %}">← 一覧に戻る</a> |
+        <a href="{% url 'edit_recipe' recipe.id %}">✏️ 編集</a> |
+        <a href="{% url 'delete_recipe' recipe.id %}">🗑️ このレシピを削除</a> |
+        <a href="{% url 'recipe_qr' recipe.id %}" class="btn btn-secondary">QRで共有</a>
+
+    </p>
+
+    <p><strong>カテゴリ:</strong> {{ recipe.category }}</p>
+
+    {% if recipe.image %}
+    <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}"
+        style="max-width:100%; border-radius:10px; margin-bottom:16px; object-fit:cover;">
+    {% endif %}       
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>レシピ削除確認 | RecipesMemory</title>
+    <link rel="stylesheet" href="{% static 'recipes/style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h1>🗑️ レシピ削除確認</h1>
+
+    <div class="recipe-card">
+        <p>本当に <strong>{{ recipe.title }}</strong> を削除しますか？</p>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit">削除する</button>
+            <a href="{% url 'recipe_detail' recipe.id %}">キャンセル</a>
+        </form>
+    </div>
+</body>
+</html>

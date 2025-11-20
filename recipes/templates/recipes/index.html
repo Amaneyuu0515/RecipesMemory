@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>RecipesMemory</title>
+    <link rel="stylesheet" href="{% static 'recipes/style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <h1 style="text-align:center;">🍳 RecipesMemory</h1>
+
+
+    <!-- 新規レシピ投稿リンク -->
+    <div style="text-align:center; margin-bottom:20px;">
+        <a href="{% url 'create_recipe' %}" class="btn-post">➕ 新しいレシピを投稿する</a>
+    </div>
+
+    <!-- カテゴリ絞り込みフォーム -->
+    <form method="GET" style="text-align:center; margin-bottom:20px;">
+        <select name="category">
+            {% for cat in categories %}
+            <option value="{{ cat.name }}" {% if cat.selected %}selected{% endif %}>
+                {{ cat.name }}
+            </option>
+            {% endfor %}
+        </select>
+        <button type="submit">絞り込む</button>
+    </form>
+
+    <!-- レシピカード表示 -->
+    <div class="recipes-container">
+        {% for recipe in recipes %}
+        <div class="recipe-card category-{{ recipe.category }}">
+            {% if recipe.image %}
+            <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}">
+            {% endif %}
+            <h2><a href="{% url 'recipe_detail' recipe.id %}">{{ recipe.title }}</a></h2>
+            <p><strong>カテゴリ:</strong> {{ recipe.category }}</p>
+            <p><strong>材料:</strong><br>{{ recipe.ingredients|truncatechars:50 }}</p>
+            <p><strong>作り方:</strong><br>{{ recipe.instructions|truncatechars:50 }}</p>
+            <small>投稿日: {{ recipe.created_at|date:"Y年m月d日 H:i" }}</small>
+        </div>
+        {% empty %}
+        <p>まだレシピがありません。</p>
+        {% endfor %}
+    </div>
+</body>
+
+</html>
