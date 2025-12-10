@@ -141,12 +141,12 @@ DATABASE_PORT = os.environ.get("DB_PORT") or "3306"
 
 # データベース接続設定
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "recipesmemory_db",  # ←あなたがMySQLで作ったDB名に変更
-        "USER": "root",
-        "PASSWORD": "amaneyuu0515",
-        "HOST": "localhost",
-        "PORT": "3306",
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': DATABASE_NAME,
+        'USER': 'root',
+        'PASSWORD': 'amaneyuu0515',
+        'HOST': 'containers-us-west-xxx.railway.app',
+        'PORT': 3306,
     }
 }
