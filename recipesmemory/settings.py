@@ -11,9 +11,10 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
-
-# テンプレートと静的ファイルの設定
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -29,9 +30,8 @@ SECRET_KEY = "django-insecure-j=6!_actjzl2tx912*-c3oi*)=f@7w+7untt5onyqzb=x)*iku
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "10.111.1.180"]
-
-
+ALLOWED_HOSTS = (os.environ.get("ALLOWED_HOSTS") or "").split(",")
+CSRF_TRUSTED_ORIGINS = (os.environ.get("CSRF_TRUSTED_ORIGINS") or "").split(",")
 # Application definition
 
 INSTALLED_APPS = [
@@ -131,3 +131,22 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+# 環境変数から接続情報を取得する
+DATABASE_HOST = os.environ.get("DB_HOST")
+DATABASE_NAME = os.environ.get("DB_NAME")
+DATABASE_USER = os.environ.get("DB_USER")
+DATABASE_PASSWORD = os.environ.get("DB_PASSWORD")
+DATABASE_PORT = os.environ.get("DB_PORT") or "3306"
+
+# データベース接続設定
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "recipesmemory_db",  # ←あなたがMySQLで作ったDB名に変更
+        "USER": "root",
+        "PASSWORD": "amaneyuu0515",
+        "HOST": "localhost",
+        "PORT": "3306",
+    }
+}
