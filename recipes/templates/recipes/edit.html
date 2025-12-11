@@ -1,15 +1,22 @@
-{% extends "base.html" %}
-{% block title %}レシピ編集 | RecipesMemory{% endblock %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="ja">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>レシピ編集 | RecipesMemory</title>
+    <link rel="stylesheet" href="{% static 'recipes/style.css' %}">
+</head>
+<body>
+    <h1>✏️ レシピを編集</h1>
 
-<h1>✏️ レシピを編集</h1>
+    <div class="recipe-card">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">投稿する</button>
+        </form>        
+    </div>
+</body>
+</html>
 
-<div class="recipe-card">
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">投稿する</button>
-    </form>        
-</div>
-
-{% endblock %}
