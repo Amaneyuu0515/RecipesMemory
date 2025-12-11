@@ -1,9 +1,7 @@
 {% extends 'base.html' %}
-{% block title %}レシピ削除確認{% endblock %}
-
+{% block title %}レシピ削除確認 | RecipesMemory{% endblock %}
 {% block content %}
 <h1>🗑️ レシピ削除確認</h1>
-
 <div class="recipe-card">
     <p>本当に <strong>{{ recipe.title }}</strong> を削除しますか？</p>
     <form method="POST">

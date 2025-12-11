@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
-{% block title %}新しいレシピを投稿{% endblock %}
-
+{% block title %}新しいレシピ投稿 | RecipesMemory{% endblock %}
 {% block content %}
-<h1>✏️ レシピを投稿/編集</h1>
-<div class="recipe-card">
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">投稿する</button>
-    </form>
-</div>
+<h1>🍳 新しいレシピを投稿</h1>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">投稿する</button>
+</form>
+<p style="text-align:center;">
+    <a href="{% url 'index' %}">← 一覧に戻る</a>
+</p>
 {% endblock %}

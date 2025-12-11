@@ -1,53 +1,29 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="ja" data-theme="light">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}RecipesMemory{% endblock %}</title>
+    {% load static %}
     <link rel="stylesheet" href="{% static 'recipes/style.css' %}">
-    <style>
-        /* テーマ切替用 */
-        body {
-            transition: background-color 0.3s, color 0.3s;
-        }
-        [data-theme="light"] {
-            background-color: #fff8f0;
-            color: #333;
-        }
-        [data-theme="dark"] {
-            background-color: #1e1e1e;
-            color: #f1f1f1;
-        }
-        .btn-toggle {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            padding: 6px 12px;
-            border-radius: 6px;
-            border: none;
-            cursor: pointer;
-            z-index: 1000;
-        }
-    </style>
 </head>
 <body>
+    <button onclick="toggleTheme()" class="btn-toggle">🌙/☀️</button>
 
-<button onclick="toggleTheme()" class="btn-toggle">🌙/☀️</button>
+    {% block content %}{% endblock %}
 
-{% block content %}{% endblock %}
+    <script>
+        const currentTheme = localStorage.getItem("theme") || "light";
+        document.documentElement.setAttribute("data-theme", currentTheme);
 
-<script>
-    // テーマ初期化
-    const currentTheme = localStorage.getItem("theme") || "light";
-    document.documentElement.setAttribute("data-theme", currentTheme);
-
-    function toggleTheme() {
-        const newTheme = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
-        document.documentElement.setAttribute("data-theme", newTheme);
-        localStorage.setItem("theme", newTheme);
-    }
-</script>
-
+        function toggleTheme() {
+            const newTheme =
+                document.documentElement.getAttribute("data-theme") === "light"
+                    ? "dark"
+                    : "light";
+            document.documentElement.setAttribute("data-theme", newTheme);
+            localStorage.setItem("theme", newTheme);
+        }
+    </script>
 </body>
 </html>
