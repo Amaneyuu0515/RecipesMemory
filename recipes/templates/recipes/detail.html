@@ -1,7 +1,9 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% block title %}{{ recipe.title }} | RecipesMemory{% endblock %}
 {% block content %}
+
 <h1>{{ recipe.title }}</h1>
+
 <div class="recipe-card">
     <p><strong>材料:</strong><br>{{ recipe.ingredients|linebreaks }}</p>
     <p><strong>作り方:</strong><br>{{ recipe.instructions|linebreaks }}</p>
@@ -14,8 +16,12 @@
     <a href="{% url 'delete_recipe' recipe.id %}">🗑️ 削除</a> |
     <a href="{% url 'recipe_qr' recipe.id %}">QRで共有</a>
 </p>
-{% if recipe.image %}
-<img src="{{ recipe.image.url }}" alt="{{ recipe.title }}" style="max-width:100%; border-radius:10px; margin-top:16px; object-fit:cover;">
-{% endif %}
+
 <p><strong>カテゴリ:</strong> {{ recipe.category }}</p>
+
+{% if recipe.image %}
+<img src="{{ recipe.image.url }}" alt="{{ recipe.title }}"
+     style="max-width:100%; border-radius:10px; margin-bottom:16px; object-fit:cover;">
+{% endif %}
+
 {% endblock %}

@@ -1,25 +1,15 @@
-<!-- recipes/templates/recipes/qr.html -->
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>スマホ用QRコード</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            text-align: center;
-            padding: 50px;
-        }
-        img {
-            max-width: 80%;
-            height: auto;
-        }
-    </style>
-</head>
-<body>
-    <h1>このリンクにアクセス</h1>
-    <p>スマホでQRコードを読み取ってください。</p>
-    <img src="data:image/png;base64,{{ qr_code }}" alt="QRコード">
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}{{ recipe.title }} のQRコード | RecipesMemory{% endblock %}
+{% block content %}
+
+<h1>QRコードで共有</h1>
+
+<p>{{ recipe.title }}</p>
+
+<img src="{{ qr_image_url }}" alt="QRコード">
+
+<p style="text-align:center;">
+    <a href="{% url 'recipe_detail' recipe.id %}">← レシピに戻る</a>
+</p>
+
+{% endblock %}

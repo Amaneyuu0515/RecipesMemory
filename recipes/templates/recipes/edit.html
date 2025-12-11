@@ -1,12 +1,15 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% block title %}レシピ編集 | RecipesMemory{% endblock %}
 {% block content %}
+
 <h1>✏️ レシピを編集</h1>
+
 <div class="recipe-card">
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">投稿する</button>
-    </form>
+    </form>        
 </div>
+
 {% endblock %}
