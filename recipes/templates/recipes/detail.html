@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="ja">
 {% load static %}
-<link rel="stylesheet" href="{% static 'recipes/style.css' %}">
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ recipe.title }} | RecipesMemory</title>
     <link rel="stylesheet" href="{% static 'recipes/style.css' %}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-
 <body>
     <h1>{{ recipe.title }}</h1>
 
@@ -24,7 +21,6 @@
         <a href="{% url 'edit_recipe' recipe.id %}">✏️ 編集</a> |
         <a href="{% url 'delete_recipe' recipe.id %}">🗑️ このレシピを削除</a> |
         <a href="{% url 'recipe_qr' recipe.id %}" class="btn btn-secondary">QRで共有</a>
-
     </p>
 
     <p><strong>カテゴリ:</strong> {{ recipe.category }}</p>
@@ -34,5 +30,4 @@
         style="max-width:100%; border-radius:10px; margin-bottom:16px; object-fit:cover;">
     {% endif %}       
 </body>
-
 </html>

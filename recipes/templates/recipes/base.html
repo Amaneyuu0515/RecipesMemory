@@ -1,11 +1,13 @@
-<!DOCTYPE html>
-<html lang="ja" data-theme="light"></html>
 {% load static %}
-<link rel="stylesheet" href="{% static 'recipes/style.css' %}">
+<!DOCTYPE html>
+<html lang="ja" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}レシピサイト{% endblock %}</title>
+
+    <!-- 外部CSSを正しく読み込む -->
+    <link rel="stylesheet" href="{% static 'recipes/style.css' %}">
 
     <style>
         body {
@@ -29,24 +31,22 @@
     </style>
 </head>
 <body>
+    <button onclick="toggleTheme()" class="btn-toggle">🌙/☀️</button>
 
-<button onclick="toggleTheme()" class="btn-toggle">🌙/☀️</button>
+    {% block content %}{% endblock %}
 
-{% block content %}{% endblock %}
+    <script>
+        const currentTheme = localStorage.getItem("theme") || "light";
+        document.documentElement.setAttribute("data-theme", currentTheme);
 
-<script>
-    const currentTheme = localStorage.getItem("theme") || "light";
-    document.documentElement.setAttribute("data-theme", currentTheme);
-
-    function toggleTheme() {
-        const newTheme =
-            document.documentElement.getAttribute("data-theme") === "light"
-                ? "dark"
-                : "light";
-        document.documentElement.setAttribute("data-theme", newTheme);
-        localStorage.setItem("theme", newTheme);
-    }
-</script>
-
+        function toggleTheme() {
+            const newTheme =
+                document.documentElement.getAttribute("data-theme") === "light"
+                    ? "dark"
+                    : "light";
+            document.documentElement.setAttribute("data-theme", newTheme);
+            localStorage.setItem("theme", newTheme);
+        }
+    </script>
 </body>
 </html>
